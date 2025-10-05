@@ -1,6 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  output: 'standalone',
+  eslint: {
+    // Don't run ESLint during build on production
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    // Already type-checked in separate step
+    ignoreBuildErrors: false,
+  },
   async headers() {
     return [
       {
