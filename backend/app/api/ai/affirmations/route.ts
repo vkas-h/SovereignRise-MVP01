@@ -62,8 +62,6 @@ export async function POST(request: NextRequest) {
         tone,
         {
           username: user.username || user.display_name || 'Champion',
-          level: user.level || 1,
-          xp: user.xp || 0,
           streak: user.current_streak || 0
         }
       );
