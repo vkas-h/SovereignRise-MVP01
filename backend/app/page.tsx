@@ -1,37 +1,21 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-
 export default function Home() {
-  const [schedulerStatus, setSchedulerStatus] = useState('Initializing...');
-
-  useEffect(() => {
-    // Initialize the scheduler when the app loads
-    fetch('/api/init-scheduler', { method: 'POST' })
-      .then(res => res.json())
-      .then(data => {
-        setSchedulerStatus(data.message || 'Initialized');
-      })
-      .catch(err => {
-        console.error('Failed to initialize scheduler:', err);
-        setSchedulerStatus('Failed to initialize');
-      });
-  }, []);
-
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Sovereign Rise API</h1>
-        <p className="text-gray-600 mb-4">Backend server is running</p>
-        <p className="text-sm text-blue-600 mb-8">Scheduler: {schedulerStatus}</p>
-        <div className="bg-gray-100 p-6 rounded-lg text-left">
-          <h2 className="font-semibold mb-2">Available Endpoints:</h2>
-          <ul className="space-y-1 text-sm">
+    <main style={{ display: 'flex', minHeight: '100vh', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
+      <div style={{ textAlign: 'center' }}>
+        <h1 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem' }}>Sovereign Rise API</h1>
+        <p style={{ color: '#666', marginBottom: '2rem' }}>Backend server is running ✅</p>
+        <div style={{ backgroundColor: '#f5f5f5', padding: '1.5rem', borderRadius: '8px', textAlign: 'left' }}>
+          <h2 style={{ fontWeight: '600', marginBottom: '0.5rem' }}>Available Endpoints:</h2>
+          <ul style={{ listStyle: 'none', padding: 0 }}>
             <li>• POST /api/auth/verify</li>
             <li>• GET /api/user/profile</li>
             <li>• POST /api/auth/logout</li>
-            <li>• POST /api/cleanup - Run cleanup</li>
-            <li>• GET /api/cleanup - Preview cleanup</li>
+            <li>• GET /api/tasks</li>
+            <li>• POST /api/tasks</li>
+            <li>• GET /api/habits</li>
+            <li>• POST /api/ai/affirmations</li>
+            <li>• POST /api/ai/burnout</li>
+            <li>• GET /api/ai/insights</li>
           </ul>
         </div>
       </div>
