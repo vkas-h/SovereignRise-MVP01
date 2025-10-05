@@ -1,0 +1,21 @@
+# Ignore Android app files - only deploy backend
+app/
+gradle/
+build/
+*.gradle
+*.gradle.kts
+gradlew
+gradlew.bat
+settings.gradle.kts
+local.properties
+
+# Ignore documentation
+*.md
+!backend/README.md
+
+# Ignore other non-backend files
+.idea/
+.git/
+*.apk
+*.aab
+
