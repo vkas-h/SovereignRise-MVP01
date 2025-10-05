@@ -32,18 +32,26 @@ This guide will help you deploy your Next.js backend to Railway, making it produ
 4. Search and select your **`SovereignRise`** repository
 5. Railway will auto-detect it's a Next.js application
 
-### Step 3: Configure Backend Directory
+### Step 3: Configure Backend Directory ⚠️ CRITICAL!
 
-Since your backend is in the `backend/` subdirectory, you need to configure Railway:
+**IMPORTANT:** Railway might try to build your Android app instead of the backend. This will fail with "SDK location not found" error. Follow these steps carefully:
 
 1. After selecting the repo, Railway creates a service
 2. Click on your service card
 3. Go to **Settings** tab
-4. Find **Build & Deploy** section
-5. Set the following:
-   - **Root Directory**: `backend`
-   - **Build Command**: `npm run build` (should auto-detect)
-   - **Start Command**: `npm start` (should auto-detect)
+4. Scroll down to find **Service Settings** or **Build & Deploy** section
+5. Set **Root Directory** to: `backend`
+6. Click **Save** or the setting will not apply!
+
+**After setting the root directory:**
+- Railway should detect it as a **Next.js** project
+- Build Command: `npm run build` (auto-detected)
+- Start Command: `npm start` (auto-detected)
+
+**If Railway still detects Java/Gradle:**
+- Delete the service and create a new one
+- Make sure to set Root Directory BEFORE the first deployment
+- Check that `nixpacks.toml` and `.railwayignore` files are committed to your repo
 
 ### Step 4: Add Environment Variables
 
@@ -326,6 +334,29 @@ Railway offers several plans:
 ---
 
 ## 🚨 Troubleshooting
+
+### Railway Building Android Instead of Backend ⚠️ COMMON ISSUE!
+
+**Error**: `SDK location not found. Define a valid SDK location with an ANDROID_HOME environment variable`
+
+**What happened**: Railway detected your Android project (Gradle/Java) instead of your Next.js backend
+
+**Solution:**
+1. **Go to Railway dashboard → Settings**
+2. **Set Root Directory to: `backend`** (this is the most important step!)
+3. **Save the setting**
+4. **Trigger a new deployment**
+5. **Verify** Railway now shows "Next.js" instead of "Java/Gradle"
+
+**If still failing:**
+1. Delete the service
+2. Create a new service
+3. **Set Root Directory IMMEDIATELY** after creation (before first deployment)
+4. Make sure `nixpacks.toml` and `.railwayignore` files exist in your repo root
+
+**Files to check are committed:**
+- `backend/nixpacks.toml` - Tells Railway to use Node.js
+- `.railwayignore` - Excludes Android files from build
 
 ### Build Failed
 
