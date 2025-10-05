@@ -68,10 +68,10 @@ Generate ONLY the affirmation message, nothing else:`;
     model: 'gemini-2.0-flash-lite',
     contents: prompt
   });
-  const text = response.text.trim();
+  const text = response.text?.trim() || '';
 
   // Remove quotes if present
-  return text.replace(/^["']|["']$/g, '');
+  return text.replace(/^["']|["']$/g, '') || "You're doing great! Keep going!";
 }
 
 /**
@@ -87,13 +87,12 @@ export async function generateBurnoutInsights(
   },
   userProfile: {
     username: string;
-    level: number;
   }
 ): Promise<{
   message: string;
   recommendations: string[];
 }> {
-  const prompt = `You are a wellness coach analyzing productivity patterns for ${userProfile.username} (Level ${userProfile.level}).
+  const prompt = `You are a wellness coach analyzing productivity patterns for ${userProfile.username}.
 
 Current Metrics:
 - Task completion rate: ${(metrics.completionRate * 100).toFixed(0)}%
@@ -118,7 +117,7 @@ Be caring but honest. Focus on sustainable productivity, not guilt.`;
     model: 'gemini-2.0-flash-exp',
     contents: prompt
   });
-  const text = response.text.trim();
+  const text = response.text?.trim() || '';
 
   try {
     // Extract JSON from response (handle markdown code blocks)
@@ -177,7 +176,7 @@ Format as JSON:
     model: 'gemini-2.0-flash-exp',
     contents: prompt
   });
-  const text = response.text.trim();
+  const text = response.text?.trim() || '';
 
   try {
     const jsonMatch = text.match(/\{[\s\S]*\}/);
@@ -203,21 +202,18 @@ export async function generateProductivityInsights(
     tasksCompleted: number;
     habitsCompleted: number;
     perfectDays: number;
-    totalXpEarned: number;
     currentStreak: number;
   },
   userProfile: {
     username: string;
-    level: number;
   }
 ): Promise<string> {
-  const prompt = `You are a productivity coach analyzing ${userProfile.username}'s weekly performance (Level ${userProfile.level}).
+  const prompt = `You are a productivity coach analyzing ${userProfile.username}'s weekly performance.
 
 This Week:
 - Tasks completed: ${weeklyStats.tasksCompleted}
 - Habits maintained: ${weeklyStats.habitsCompleted}
 - Perfect days: ${weeklyStats.perfectDays}
-- XP earned: ${weeklyStats.totalXpEarned}
 - Current streak: ${weeklyStats.currentStreak} days
 
 Generate a SHORT (2-3 sentences) personalized insight that:
@@ -233,7 +229,7 @@ Generate ONLY the insight message:`;
     model: 'gemini-2.0-flash-exp',
     contents: prompt
   });
-  return response.text.trim().replace(/^["']|["']$/g, '');
+  return response.text?.trim() || ''.replace(/^["']|["']$/g, '');
 }
 
 /**
@@ -264,7 +260,7 @@ Generate ONLY the nudge message:`;
     model: 'gemini-2.0-flash-exp',
     contents: prompt
   });
-  return response.text.trim().replace(/^["']|["']$/g, '');
+  return response.text?.trim() || ''.replace(/^["']|["']$/g, '');
 }
 
 /**
@@ -300,7 +296,7 @@ Format as JSON:
     model: 'gemini-2.0-flash-exp',
     contents: prompt
   });
-  const text = response.text.trim();
+  const text = response.text?.trim() || '';
 
   try {
     const jsonMatch = text.match(/\{[\s\S]*\}/);
@@ -327,5 +323,5 @@ export async function generateText(prompt: string): Promise<string> {
     model: 'gemini-2.0-flash-exp',
     contents: prompt
   });
-  return response.text.trim();
+  return response.text?.trim() || '';
 }
