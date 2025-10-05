@@ -1,0 +1,93 @@
+# ========================================
+# Android / Gradle
+# ========================================
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+*.apk
+*.ap_
+*.aab
+output.json
+
+# ========================================
+# Backend / Node.js
+# ========================================
+backend/node_modules/
+backend/.next/
+backend/.env
+backend/.env.local
+backend/.env.production
+backend/out/
+backend/dist/
+backend/*.log
+backend/npm-debug.log*
+backend/yarn-debug.log*
+backend/yarn-error.log*
+backend/.vercel
+
+# ========================================
+# Firebase & Secrets
+# ========================================
+**/google-services.json
+backend/config/firebase-admin-key.json
+*.pem
+*.key
+.env
+.env.local
+.env.production
+
+# ========================================
+# IDE & Editor
+# ========================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# ========================================
+# OS Files
+# ========================================
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ========================================
+# Logs & Reports
+# ========================================
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+build_output.txt
+
+# ========================================
+# Testing
+# ========================================
+coverage/
+*.test.result
+.jest/
+
+# ========================================
+# Temporary Files
+# ========================================
+tmp/
+temp/
+*.tmp
+*.bak
+*.cache
