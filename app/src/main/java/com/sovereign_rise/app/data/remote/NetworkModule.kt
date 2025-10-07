@@ -21,15 +21,14 @@ import com.sovereign_rise.app.BuildConfig
 
 object NetworkModule {
     
-    // Using local IP address to bypass firewall/connection issues
-    // Your computer's IP: 172.20.154.3
-    // For Production: Use "https://api.sovereignrise.com/"
-    private const val BASE_URL = "http://172.20.154.3:3000/"
+    // Production Railway URL - Always accessible
+    // Local development: "http://10.0.2.2:3000/" (emulator) or "http://YOUR_LOCAL_IP:3000/" (physical device)
+    private const val BASE_URL = "https://sovereignrise-mvp01-production.up.railway.app/"
     
-    // Reduced timeouts for better offline experience
-    private const val CONNECT_TIMEOUT = 5L
-    private const val READ_TIMEOUT = 10L
-    private const val WRITE_TIMEOUT = 10L
+    // Increased timeouts for production network requests
+    private const val CONNECT_TIMEOUT = 15L
+    private const val READ_TIMEOUT = 30L
+    private const val WRITE_TIMEOUT = 30L
     
     // Cached token for auth interceptor - will be set by AppModule
     // TODO: Enhance with token refresh logic in future phases
