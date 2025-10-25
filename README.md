@@ -13,6 +13,9 @@ Sovereign Rise is a comprehensive personal development and productivity applicat
   <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL">
 </p>
 
+## 🌐 Visit our website : <a href="https://sovereignrise-mvp-01.netlify.app/">Sovereign Rise</a>
+
+
 ---
 
 ## ✨ Features
